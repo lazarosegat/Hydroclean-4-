@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0D47A1">
+<meta name="description" content="HydroClean — projeto experimental que estuda o uso de energia solar e microalgas para auxiliar na melhoria da qualidade da água de forma sustentável.">
+<title>HydroClean — Ciência, energia solar e microalgas pela água</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="topo">
+
+<!-- Barra de progresso de rolagem -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader" role="status" aria-live="polite">
+  <div class="drop-loader" aria-hidden="true"><span></span><span></span><span></span></div>
+  <p>Carregando HydroClean</p>
+</div>
+
+<!-- Selo protótipo -->
+<div class="proto-badge" title="Projeto escolar experimental">
+  <span class="pulse-dot" aria-hidden="true"></span> Protótipo experimental
+</div>
+
+<!-- Fundo global de microalgas -->
+<canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#topo" class="brand" aria-label="HydroClean, ir ao topo">
+      <img src="assets/logo.svg" alt="Logo HydroClean" class="brand-logo" width="44" height="44">
+      <span class="brand-copy">
+        <strong><span class="brand-hydro">Hydro</span><span class="brand-clean">Clean</span></strong>
+        <span>Ciência pela água</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Navegação principal">
+      <a class="nav-link" href="#problema">Problema</a>
+      <a class="nav-link" href="#solucao">Solução</a>
+      <a class="nav-link" href="#como-funciona">Como funciona</a>
+      <a class="nav-link" href="#resultados">Resultados</a>
+      <a class="nav-link" href="#ods">ODS</a>
+      <a class="nav-link" href="#simulador">Simulador</a>
+      <a class="nav-link" href="#projeto">Projeto</a>
+      <a class="nav-link" href="#contato">Contato</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Alternar tema claro e escuro" title="Alternar tema">☾</button>
+      <a href="#como-funciona" class="cta-btn">Conheça o projeto</a>
+      <button class="icon-btn mobile-toggle" id="mobileToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="hero" aria-label="Apresentação">
+  <div class="hero-blob blob-1" aria-hidden="true"></div>
+  <div class="hero-blob blob-2" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">Projeto científico em desenvolvimento</span>
+      <h1 class="reveal">Água mais limpa com a <span class="gradient-text">força do sol</span> e a inteligência da natureza</h1>
+      <p class="lead reveal">O HydroClean é um <strong>protótipo experimental</strong> que estuda a combinação de energia solar e microalgas com o objetivo de auxiliar na melhoria da qualidade da água, de forma sustentável e sem produtos químicos agressivos.</p>
+      <div class="hero-actions reveal">
+        <a href="#como-funciona" class="primary-btn">Saiba como funciona</a>
+        <a href="#simulador" class="secondary-btn">Explorar o simulador</a>
+      </div>
+      <p class="hero-note reveal">Projeto escolar em fase experimental · Feira de Ciências, 2026</p>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="device-card">
+        <div class="device-glow" aria-hidden="true"></div>
+        <svg class="device-svg" viewBox="0 0 400 320" role="img" aria-label="Ilustração do sistema: o sol gera energia solar que alimenta o tratamento da água com microalgas">
+          <defs>
+            <radialGradient id="sunCore" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0%" stop-color="#FFFDE7"/><stop offset="45%" stop-color="#FFEB3B"/><stop offset="100%" stop-color="#FBC02D"/>
+            </radialGradient>
+            <linearGradient id="tankGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#5EC4F5"/><stop offset="100%" stop-color="#0D47A1"/>
+            </linearGradient>
+            <linearGradient id="panelGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#1E4D91"/><stop offset="100%" stop-color="#0D2E5C"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Sol -->
+          <g class="sun-group">
+            <circle class="sun-halo" cx="330" cy="60" r="46" fill="#FFF176" opacity="0.28"/>
+            <g class="sun-rays" transform-origin="330 60">
+              <g stroke="#FDD835" stroke-width="3" stroke-linecap="round">
+                <line x1="330" y1="8" x2="330" y2="20"/><line x1="330" y1="100" x2="330" y2="112"/>
+                <line x1="278" y1="60" x2="290" y2="60"/><line x1="370" y1="60" x2="382" y2="60"/>
+                <line x1="293" y1="23" x2="301" y2="31"/><line x1="359" y1="89" x2="367" y2="97"/>
+                <line x1="367" y1="23" x2="359" y2="31"/><line x1="301" y1="89" x2="293" y2="97"/>
+              </g>
+            </g>
+            <circle class="sun-core" cx="330" cy="60" r="24" fill="url(#sunCore)"/>
+          </g>
+
+          <!-- Feixe de energia sol -> painel -->
+          <path class="energy-beam" d="M312 78 L120 150" stroke="#FDD835" stroke-width="3" stroke-dasharray="6 8" fill="none" opacity="0.7"/>
+          <text x="205" y="118" class="svg-tag" fill="#FBC02D" font-size="11" font-weight="700">energia solar</text>
+
+          <!-- Painel solar -->
+          <g transform="translate(70 150) rotate(-18)">
+            <rect x="0" y="0" width="90" height="56" rx="4" fill="url(#panelGrad)" stroke="#5EC4F5" stroke-width="1.5"/>
+            <line x1="30" y1="0" x2="30" y2="56" stroke="#5EC4F5" stroke-width="1" opacity="0.5"/>
+            <line x1="60" y1="0" x2="60" y2="56" stroke="#5EC4F5" stroke-width="1" opacity="0.5"/>
+            <line x1="0" y1="28" x2="90" y2="28" stroke="#5EC4F5" stroke-width="1" opacity="0.5"/>
+          </g>
+
+          <!-- Fluxo energia -> tanque -->
+          <path class="energy-beam" d="M120 210 L200 235" stroke="#8BC34A" stroke-width="3" stroke-dasharray="6 8" fill="none" opacity="0.7"/>
+
+          <!-- Tanque com microalgas -->
+          <g transform="translate(190 150)">
+            <rect x="0" y="0" width="150" height="150" rx="16" fill="#E3F2FD" stroke="#90CAF9" stroke-width="2"/>
+            <clipPath id="tankClip"><rect x="4" y="60" width="142" height="86" rx="12"/></clipPath>
+            <g clip-path="url(#tankClip)">
+              <rect x="0" y="55" width="150" height="95" fill="url(#tankGrad)" opacity="0.85"/>
+              <path class="wave" d="M-20 62 Q 20 54 55 62 T 130 62 T 205 62 V150 H-20 Z" fill="#5EC4F5" opacity="0.5"/>
+              <g class="algae-dots" fill="#8BC34A">
+                <circle cx="30" cy="120" r="5"/><circle cx="70" cy="100" r="4"/>
+                <circle cx="110" cy="128" r="6"/><circle cx="95" cy="90" r="3"/>
+                <circle cx="50" cy="135" r="4"/><circle cx="125" cy="105" r="4"/>
+              </g>
+            </g>
+            <text x="75" y="30" text-anchor="middle" fill="#0D47A1" font-size="12" font-weight="800">Sistema</text>
+            <text x="75" y="47" text-anchor="middle" fill="#2E7D32" font-size="10" font-weight="600">microalgas + filtragem</text>
+          </g>
+
+          <!-- Saída água -->
+          <path class="energy-beam" d="M340 240 L378 240" stroke="#1976D2" stroke-width="3" stroke-dasharray="4 6" fill="none"/>
+          <path d="M378 240 l-8 -5 v10 z" fill="#1976D2"/>
+        </svg>
+
+        <div class="device-tag">
+          <span>Fluxo do protótipo</span>
+          <strong>Sol → Energia → Sistema → Água tratada</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="scroll-cue" href="#problema" aria-label="Rolar para o conteúdo">
+    <span aria-hidden="true"></span>
+    <p>Role para explorar</p>
+  </a>
+</section>
+
+<!-- ================= PROBLEMA ================= -->
+<section class="section" id="problema">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">O problema</span>
+      <h2>Milhões de pessoas ainda convivem com água de baixa qualidade</h2>
+      <p class="lead">O HydroClean nasceu da vontade de estudar uma solução sustentável e acessível que possa <strong>auxiliar</strong> na melhoria da qualidade da água, aproveitando dois recursos abundantes na natureza: a energia solar e as microalgas.</p>
+    </div>
+
+    <div class="stat-grid">
+      <article class="stat-card reveal">
+        <div class="stat-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13z"/></svg>
+        </div>
+        <strong><span data-counter="2200000000">0</span></strong>
+        <p>pessoas no mundo não têm acesso a água potável gerida com segurança.</p>
+        <small>Fonte: OMS e UNICEF</small>
+      </article>
+      <article class="stat-card reveal">
+        <div class="stat-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M6 21V9l6-4 6 4v12"/></svg>
+        </div>
+        <strong><span data-counter="35000000">0</span></strong>
+        <p>brasileiros ainda vivem sem acesso a água tratada em suas casas.</p>
+        <small>Fonte: Instituto Trata Brasil</small>
+      </article>
+      <article class="stat-card reveal">
+        <div class="stat-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>
+        </div>
+        <strong>Alto consumo</strong>
+        <p>Métodos convencionais dependem de energia elétrica e produtos químicos para funcionar.</p>
+        <small>Impacto ambiental elevado</small>
+      </article>
+      <article class="stat-card reveal">
+        <div class="stat-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        </div>
+        <strong>Urgência climática</strong>
+        <p>Precisamos de soluções que respeitem o planeta e reduzam a pressão sobre os recursos naturais.</p>
+        <small>Agenda ODS 2030</small>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOLUÇÃO ================= -->
+<section class="section alt-bg" id="solucao">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker">Nossa proposta</span>
+      <h2>Um sistema estudado em cinco etapas naturais</h2>
+      <p class="lead">Cada etapa foi pensada com o objetivo de reduzir custos, consumo de energia e impacto ambiental — uma proposta simples, inspirada em processos que já existem na natureza.</p>
+    </div>
+
+    <div class="steps-grid">
+      <article class="step-card reveal" style="--d:0s">
+        <span class="step-num">01</span>
+        <h3>Captação da energia solar</h3>
+        <p>Painéis fotovoltaicos captam a energia do sol para alimentar o sistema com uma fonte renovável.</p>
+        <small>Etapa de alimentação</small>
+      </article>
+      <article class="step-card reveal" style="--d:.08s">
+        <span class="step-num">02</span>
+        <h3>Entrada da água</h3>
+        <p>A água bruta é conduzida até o reservatório principal, onde o processo de tratamento tem início.</p>
+        <small>Etapa de captação</small>
+      </article>
+      <article class="step-card reveal" style="--d:.16s">
+        <span class="step-num">03</span>
+        <h3>Tratamento com microalgas</h3>
+        <p>As microalgas têm potencial para auxiliar na absorção de impurezas e na oxigenação da água.</p>
+        <small>Etapa biológica</small>
+      </article>
+      <article class="step-card reveal" style="--d:.24s">
+        <span class="step-num">04</span>
+        <h3>Filtragem em camadas</h3>
+        <p>Camadas filtrantes buscam reter partículas sólidas e resíduos, deixando a água mais transparente.</p>
+        <small>Etapa física</small>
+      </article>
+      <article class="step-card highlight reveal" style="--d:.32s">
+        <span class="step-num">05</span>
+        <h3>Água com melhor qualidade</h3>
+        <p>A proposta é obter uma água com aparência e odor sensivelmente melhores, conforme os resultados dos testes.</p>
+        <small>Resultado em avaliação</small>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMO FUNCIONA ================= -->
+<section class="section" id="como-funciona">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker">Como funciona</span>
+      <h2>Do reservatório à água tratada</h2>
+      <p class="lead">Acompanhe o caminho que a água percorre dentro do sistema HydroClean. Passe o mouse (ou toque) em cada etapa.</p>
+    </div>
+
+    <div class="flow reveal" id="flow">
+      <div class="flow-node" data-step="1">
+        <div class="flow-badge" aria-hidden="true">💧</div>
+        <span>Entrada da água</span>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"></div>
+      <div class="flow-node" data-step="2">
+        <div class="flow-badge" aria-hidden="true">🛢️</div>
+        <span>Reservatório</span>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"></div>
+      <div class="flow-node" data-step="3">
+        <div class="flow-badge" aria-hidden="true">🦠</div>
+        <span>Microalgas</span>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"></div>
+      <div class="flow-node" data-step="4">
+        <div class="flow-badge" aria-hidden="true">☀️</div>
+        <span>Energia solar</span>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"></div>
+      <div class="flow-node" data-step="5">
+        <div class="flow-badge" aria-hidden="true">⛲</div>
+        <span>Filtragem</span>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"></div>
+      <div class="flow-node success" data-step="6">
+        <div class="flow-badge" aria-hidden="true">✓</div>
+        <span>Água tratada</span>
+      </div>
+    </div>
+
+    <!-- Animação da água percorrendo o sistema -->
+    <div class="flow-pipe reveal" aria-hidden="true">
+      <div class="flow-pipe-fill" id="flowPipe"></div>
+      <div class="flow-drop" id="flowDrop"></div>
+    </div>
+    <p class="center muted flow-caption">A água percorre o sistema alimentada por energia solar. A destinação e o reuso dependem dos resultados obtidos nos testes.</p>
+  </div>
+</section>
+
+<!-- ================= BENEFÍCIOS ================= -->
+<section class="section alt-bg" id="beneficios">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker">O que o projeto propõe</span>
+      <h2>Objetivos do HydroClean</h2>
+      <p class="lead">Uma tecnologia estudada para gerar valor para o usuário e para o meio ambiente. São objetivos e potenciais em avaliação — não resultados garantidos.</p>
+    </div>
+
+    <div class="benefits-grid">
+      <article class="benefit reveal"><h3>Energia solar</h3><p>O objetivo é alimentar o sistema por painéis fotovoltaicos, reduzindo a dependência da rede elétrica.</p></article>
+      <article class="benefit reveal"><h3>Baixo consumo</h3><p>A proposta prioriza componentes eficientes, buscando gasto energético reduzido na operação.</p></article>
+      <article class="benefit reveal"><h3>Tecnologia sustentável</h3><p>Um processo natural, com a proposta de evitar produtos químicos agressivos ao meio ambiente.</p></article>
+      <article class="benefit reveal"><h3>Redução de odores</h3><p>A ação das microalgas tem potencial para auxiliar na melhoria do odor da água tratada.</p></article>
+      <article class="benefit reveal"><h3>Melhor aparência</h3><p>Em testes experimentais, busca-se uma água final com aspecto mais límpido.</p></article>
+      <article class="benefit reveal"><h3>Manutenção simples</h3><p>Componentes acessíveis, com a proposta de limpeza fácil e sem mão de obra especializada.</p></article>
+      <article class="benefit reveal"><h3>Baixo custo operacional</h3><p>O objetivo é uma operação econômica no dia a dia, adaptável a diferentes realidades.</p></article>
+      <article class="benefit reveal"><h3>Reuso inteligente</h3><p>A proposta é aproveitar fontes de água que normalmente seriam descartadas ou subutilizadas.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESULTADOS EXPERIMENTAIS ================= -->
+<section class="section" id="resultados">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker">Resultados experimentais</span>
+      <h2>Dados obtidos nos testes</h2>
+      <p class="lead" id="resultsNote">Os parâmetros medidos pelo protótipo serão exibidos aqui.</p>
+    </div>
+    <div class="results-grid" id="resultsGrid" aria-live="polite">
+      <!-- Preenchido dinamicamente a partir de config.js -->
+    </div>
+    <p class="center muted results-disclaimer">Nenhum resultado é inventado: os campos vazios indicam medições ainda não registradas pelo projeto. Assim que os dados reais forem medidos, basta preenchê-los em <code>config.js</code>.</p>
+  </div>
+</section>
+
+<!-- ================= ODS ================= -->
+<section class="section alt-bg" id="ods">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker">Agenda 2030</span>
+      <h2>Alinhado aos Objetivos de Desenvolvimento Sustentável</h2>
+      <p class="lead">O projeto está alinhado às seguintes ODS da Agenda 2030 da ONU. Veja como cada uma se relaciona com a proposta do HydroClean.</p>
+    </div>
+
+    <div class="ods-grid">
+      <article class="ods-card reveal" style="--c:#4C9F38">
+        <div class="ods-num">03</div>
+        <h3>Saúde e Bem-estar</h3>
+        <p>Buscar água de melhor qualidade pode contribuir, futuramente, para reduzir riscos relacionados ao consumo hídrico — algo a ser confirmado pelos testes.</p>
+      </article>
+      <article class="ods-card reveal" style="--c:#26BDE2">
+        <div class="ods-num">06</div>
+        <h3>Água Potável e Saneamento</h3>
+        <p>A proposta é estudar soluções de tratamento acessíveis em locais onde o saneamento ainda é limitado.</p>
+      </article>
+      <article class="ods-card reveal" style="--c:#FCC30B">
+        <div class="ods-num">07</div>
+        <h3>Energia Limpa e Acessível</h3>
+        <p>O objetivo do projeto é que o funcionamento seja alimentado por energia solar, uma fonte renovável.</p>
+      </article>
+      <article class="ods-card reveal" style="--c:#3F7E44">
+        <div class="ods-num">13</div>
+        <h3>Ação Contra a Mudança Climática</h3>
+        <p>Ao propor o uso de energia renovável, o projeto busca apoiar iniciativas de baixo impacto ambiental.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SIMULADOR ================= -->
+<section class="section" id="simulador">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker">Simulador</span>
+      <h2>Estime a configuração ideal para o seu caso</h2>
+      <p class="lead">Informe alguns dados e o simulador calcula, de forma dinâmica, a demanda estimada de água e o modelo mais adequado. Valores de referência são configuráveis e servem para demonstração.</p>
+    </div>
+
+    <div class="simulator reveal">
+      <div class="sim-form">
+        <label for="simPeople">
+          Quantas pessoas usarão a água?
+          <output id="simPeopleOut">4 pessoas</output>
+          <input type="range" id="simPeople" min="1" max="120" value="4" step="1" aria-describedby="simPeopleOut">
+        </label>
+
+        <div class="sim-field">
+          <span class="sim-field-label">Qual é o tipo de uso?</span>
+          <div class="chip-group" id="simUse" role="group" aria-label="Tipo de uso">
+            <button type="button" data-v="residencial" class="is-active">Residencial</button>
+            <button type="button" data-v="rural">Rural</button>
+            <button type="button" data-v="escola">Escola</button>
+            <button type="button" data-v="empresa">Empresa</button>
+            <button type="button" data-v="emergencia">Emergência</button>
+          </div>
+        </div>
+
+        <div class="sim-field">
+          <span class="sim-field-label">Qual é a sua prioridade?</span>
+          <div class="chip-group" id="simPrio" role="group" aria-label="Prioridade">
+            <button type="button" data-v="economia" class="is-active">Economia</button>
+            <button type="button" data-v="equilibrio">Equilíbrio</button>
+            <button type="button" data-v="capacidade">Maior capacidade</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sim-result">
+        <span class="sim-label">Sugestão do sistema</span>
+        <strong id="simModel">HydroClean Home</strong>
+        <p id="simDesc">Modelo compacto, pensado para famílias pequenas com foco em economia no uso residencial.</p>
+
+        <div class="sim-meter">
+          <div class="sim-meter-row">
+            <span>Demanda estimada</span>
+            <b id="simDemand">200 L/dia</b>
+          </div>
+          <div class="sim-bar"><div class="sim-bar-fill" id="simBar"></div></div>
+          <div class="sim-meter-row">
+            <span>Capacidade recomendada</span>
+            <b id="simCapacity">230 L/dia</b>
+          </div>
+        </div>
+
+        <div class="sim-specs">
+          <div><small>Capacidade do modelo</small><b id="simCap">Até 200 L/dia</b></div>
+          <div><small>Painéis</small><b id="simPanels">1 painel</b></div>
+          <div><small>Faixa estimada</small><b id="simPrice">R$ 2.500 a R$ 4.000</b></div>
+        </div>
+
+        <p class="sim-why" id="simWhy">Este modelo foi sugerido porque atende à capacidade recomendada com folga adequada.</p>
+
+        <a href="#contato" class="primary-btn">Conversar sobre este modelo</a>
+        <span class="footnote">Valores estimativos para demonstração. Projeto escolar sem fins comerciais.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJETO / TIMELINE ================= -->
+<section class="section alt-bg" id="projeto">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker">Sobre o projeto</span>
+      <h2>A trajetória do HydroClean</h2>
+      <p class="lead">Do problema observado aos próximos passos. Cada etapa foi construída com pesquisa, testes e muita curiosidade.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-body"><span>Problema</span><h4>Água de baixa qualidade</h4><p>Observamos o desperdício e a baixa qualidade da água em nossa realidade e nos perguntamos como a natureza poderia ajudar.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-body"><span>Pesquisa</span><h4>Estudo das tecnologias</h4><p>Estudamos energia solar, microalgas e sistemas de filtragem para desenhar uma proposta viável e sustentável.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-body"><span>Hipótese</span><h4>A ideia central</h4><p>Levantamos a hipótese de que microalgas e energia solar poderiam auxiliar na melhoria da qualidade da água.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-body"><span>Desenvolvimento</span><h4>Desenho do sistema</h4><p>Definimos as etapas, os materiais e o fluxo da água dentro do sistema proposto.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-body"><span>Construção</span><h4>Primeiro protótipo</h4><p>Construímos o protótipo com materiais acessíveis, integrando reservatório, painel solar e filtragem.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-body"><span>Testes</span><h4>Testes experimentais</h4><p>Realizamos medições de parâmetros como aparência, odor e desempenho em diferentes condições de uso.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-dot success-dot"></div><div class="tl-body"><span>Resultados</span><h4>Análise dos dados</h4><p>Os resultados obtidos estão sendo registrados e analisados para orientar os próximos ajustes do protótipo.</p></div></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-body"><span>Próximos passos</span><h4>Evolução do projeto</h4><p>Buscamos aprimorar o protótipo, ampliar os testes e compartilhar o aprendizado em feiras de ciências.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="kicker">Perguntas frequentes</span>
+      <h2>Tudo o que você precisa saber</h2>
+    </div>
+    <div class="faq-list">
+      <details class="reveal"><summary>Como o HydroClean funciona?</summary><p>O sistema utiliza energia solar para alimentar bombas e sensores. A água passa por um reservatório com microalgas, que têm potencial para auxiliar no tratamento biológico, e depois segue para uma etapa de filtragem física.</p></details>
+      <details class="reveal"><summary>A água tratada já é própria para consumo humano?</summary><p>Não afirmamos isso. O HydroClean é um projeto experimental. A finalidade da água tratada e seus usos possíveis só serão definidos conforme os resultados obtidos nos testes do protótipo.</p></details>
+      <details class="reveal"><summary>As microalgas ficam na água tratada?</summary><p>A proposta é que as microalgas permaneçam no reservatório de tratamento e sejam separadas antes da filtragem, para que a água final saia mais limpa.</p></details>
+      <details class="reveal"><summary>É preciso usar energia elétrica da rede?</summary><p>O objetivo do projeto é que o sistema funcione com energia solar, buscando reduzir custos operacionais e impacto ambiental.</p></details>
+      <details class="reveal"><summary>Quanto tempo dura o tratamento?</summary><p>Depende do volume de água e das condições ambientais. Nos testes experimentais, buscamos observar resultados perceptíveis conforme os dados forem registrados.</p></details>
+      <details class="reveal"><summary>O HydroClean já está à venda?</summary><p>Não. Este é um projeto escolar em fase de validação, apresentado em feiras de ciências como demonstração da tecnologia estudada.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTATO ================= -->
+<section class="section alt-bg" id="contato">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="kicker">Contato</span>
+        <h2>Vamos conversar sobre água limpa</h2>
+        <p class="lead">Entre em contato para saber mais sobre o projeto, agendar uma apresentação ou trocar ideias com a equipe.</p>
+        <div class="contact-links" id="contactLinks">
+          <!-- Links preenchidos dinamicamente a partir de config.js -->
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="row-2">
+          <label>Nome<input type="text" id="cName" name="nome" autocomplete="name" required></label>
+          <label>E-mail<input type="email" id="cEmail" name="email" autocomplete="email" required></label>
+        </div>
+        <div class="row-2">
+          <label>Instituição<input type="text" id="cOrg" name="instituicao" autocomplete="organization"></label>
+          <label>Assunto
+            <select id="cSubject" name="assunto">
+              <option>Dúvidas sobre o projeto</option>
+              <option>Parceria ou apresentação</option>
+              <option>Imprensa</option>
+              <option>Outro</option>
+            </select>
+          </label>
+        </div>
+        <label>Mensagem<textarea id="cMsg" name="mensagem" required></textarea></label>
+        <button type="submit" class="primary-btn wide" id="cSubmit">Enviar mensagem</button>
+        <p class="form-feedback" id="cFeedback" role="status" aria-live="polite"></p>
+        <p class="form-hint" id="cHint"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#topo" class="brand">
+          <img src="assets/logo.svg" alt="Logo HydroClean" class="brand-logo" width="40" height="40">
+          <span class="brand-copy"><strong><span class="brand-hydro">Hydro</span><span class="brand-clean">Clean</span></strong><span>Ciência pela água</span></span>
+        </a>
+        <p class="muted footer-desc">Projeto escolar experimental em fase de validação. Feira de Ciências, 2026.</p>
+      </div>
+      <div>
+        <h5>Navegação</h5>
+        <ul>
+          <li><a href="#problema">Problema</a></li>
+          <li><a href="#solucao">Solução</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#resultados">Resultados</a></li>
+          <li><a href="#simulador">Simulador</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Redes</h5>
+        <ul id="footerSocial"><!-- dinâmico --></ul>
+      </div>
+      <div>
+        <h5>Projeto</h5>
+        <ul>
+          <li><a href="#ods">ODS</a></li>
+          <li><a href="#projeto">Trajetória</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© 2026 HydroClean · Feito por estudantes brasileiros.</span>
+      <button class="link-btn" id="backTop" type="button">Voltar ao topo ↑</button>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
